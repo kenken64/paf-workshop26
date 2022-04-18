@@ -54,6 +54,7 @@ public class Post {
         post.setPostId(rs.getInt("post_id"));
         post.setComment(rs.getString("comment"));
         post.setImageType(rs.getString("mediatype"));
+        System.out.println(rs.getBytes("photo"));
         post.setImage(rs.getBytes("photo"));
         post.setPoster(rs.getString("poster"));
         return post;
