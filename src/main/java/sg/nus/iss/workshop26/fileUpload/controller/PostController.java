@@ -2,21 +2,23 @@ package sg.nus.iss.workshop26.fileUpload.controller;
 
 import java.io.IOException;
 
-import javax.print.attribute.standard.Media;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import sg.nus.iss.workshop26.fileUpload.models.Post;
 import sg.nus.iss.workshop26.fileUpload.repository.PostRepository;
 
 import org.springframework.http.MediaType;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/post")
@@ -25,9 +27,16 @@ public class PostController {
     @Autowired
     private PostRepository postRepo;
 
+    @GetMapping(path="/{postId}")
+    public String getPostById(@PathVariable Integer postId, Model model){
+        Optional<Post> opt= postRepo.getPostById(postId);
+        model.addAttribute("post", opt.get());
+        return "post";
+    }
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String postPost(
-        @RequestParam MultipartFile image,
+        @RequestBody MultipartFile image,
         @RequestPart String comment, @RequestPart String poster, Model model
     ){
         String imageName = image.getOriginalFilename();

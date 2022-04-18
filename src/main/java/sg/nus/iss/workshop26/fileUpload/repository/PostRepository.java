@@ -16,7 +16,7 @@ public class PostRepository {
        "insert into post(photo, comment, poster, mediatype) values (?,?,?,?)";
 
     private static final String SQL_GET_POST_BY_POST_ID = 
-       "select photo, comment, poster, mediatype where post_id=?";
+       "select post_id, photo, comment, poster, mediatype from post where post_id=?";
 
     @Autowired
     private JdbcTemplate template;
