@@ -19,6 +19,8 @@ import jakarta.json.JsonObject;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(path="/post/s3")
@@ -45,7 +47,11 @@ public class PostS3Controller {
         String uuid = UUID.randomUUID().toString().substring(0, 8);
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(imageType);
-        metadata.setContentLength(buff.length);
+        //metadata.setContentLength(buff.length);
+        Map userCustomMetadata  = new HashMap();
+        userCustomMetadata.put("uploader", poster);
+        userCustomMetadata.put("fileSize", String.valueOf(buff.length));
+        metadata.setUserMetadata(userCustomMetadata);
 
         try {
             PutObjectRequest putReq = new PutObjectRequest("vtt20222paf", 
