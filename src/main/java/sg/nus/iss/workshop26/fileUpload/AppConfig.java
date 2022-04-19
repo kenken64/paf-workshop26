@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvEntry;
+// import io.github.cdimascio.dotenv.Dotenv;
+// import io.github.cdimascio.dotenv.DotenvEntry;
 
 @Configuration
 public class AppConfig {
@@ -30,16 +30,16 @@ public class AppConfig {
 
     @Bean
     AmazonS3 createS3Client(){
-        Dotenv dotenv = Dotenv.configure().load();
+        // Dotenv dotenv = Dotenv.configure().load();
 
-        // Iterate over each environment entry
-        // Note: entries in the host environment override entries in .env
-        for (DotenvEntry e : dotenv.entries()) {
-            System.out.println(e);
-        }
+        // // Iterate over each environment entry
+        // // Note: entries in the host environment override entries in .env
+        // for (DotenvEntry e : dotenv.entries()) {
+        //     System.out.println(e);
+        // }
 
-        final String accessKey = dotenv.get("S3_ACCESS_KEY");
-        final String secretKey = dotenv.get("S3_SECRET_KEY");
+        final String accessKey = System.getenv("S3_ACCESS_KEY");
+        final String secretKey = System.getenv("S3_SECRET_KEY");
         logger.log(Level.INFO, "accessKey > " + accessKey);
         logger.log(Level.INFO, "secretKey > " + secretKey);
         

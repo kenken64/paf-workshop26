@@ -1,5 +1,13 @@
 name: Compile, test, deploy
 on: ["push"]
+env:
+  SPRING_DATASOURCE_URL: ${{secrets.spring_datasource_url}}
+  SPRING_DATASOURCE_USERNAME: ${{secrets.spring_datasource_username}}
+  SPRING_DATASOURCE_PASSWORD: ${{secrets.spring_datasource_password}}
+  S3_ACCESS_KEY: ${{secrets.s3_access_key}}
+  S3_SECRET_KEY: ${{secrets.s3_secret_key}}
+  TEST_DATA_DIR: ${{secrets.test_data_dir}}
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: ${{secrets.spring_datacourse_driver_class}}
 jobs:
   step1:
     runs-on: ubuntu-latest

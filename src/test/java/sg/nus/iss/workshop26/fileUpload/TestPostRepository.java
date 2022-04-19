@@ -21,27 +21,27 @@ import io.github.cdimascio.dotenv.Dotenv;
 @SpringBootTest
 public class TestPostRepository {
 
-    @TestConfiguration
-    static class TestConfig {
+    // @TestConfiguration
+    // static class TestConfig {
 
-        @Bean
-        public Dotenv dotEnvBuilder() {
-			Dotenv dotenv = Dotenv.configure().load();
+    //     @Bean
+    //     public Dotenv dotEnvBuilder() {
+	// 		Dotenv dotenv = Dotenv.configure().load();
 
-            return dotenv;
-        }
+    //         return dotenv;
+    //     }
         
-    }
+    // }
 
-	@Autowired
-    private Dotenv dt;
+	// @Autowired
+    // private Dotenv dt;
 
     @Autowired
     private PostRepository postRepo;
 
     @Test
     public void insertPost() {
-        final String testDataDir = dt.get("TEST_DATA_DIR");
+        final String testDataDir = System.getenv("TEST_DATA_DIR");
         File fi = new File(testDataDir + "pikachu_hi_pokemon.jpg");
 		byte[] fileContent =  new byte[0];
         try {
