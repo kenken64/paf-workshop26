@@ -34,7 +34,7 @@ jobs:
         with:
           access_key: ${{ secrets.ACCESS_KEY }}
           secret_key: ${{ secrets.SECRET_KEY }}
-          space_name: bigbucket
+          space_name: vtt20222paf
           space_region: sgp1
           source: .github/badges/jacoco.svg
           out_dir: coverage/${{ github.event.repository.name }}
@@ -44,7 +44,7 @@ jobs:
         with:
           access_key: ${{ secrets.ACCESS_KEY }}
           secret_key: ${{ secrets.SECRET_KEY }}
-          space_name: bigbucket
+          space_name: vtt20222paf
           space_region: sgp1
           source: target/site/jacoco
           out_dir: coverage/${{ github.event.repository.name }}/report
