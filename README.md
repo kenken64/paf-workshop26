@@ -8,7 +8,7 @@ mvn clean verify
 mvn jacoco:report
 ```
 
-## Create a Dotenv file ``` .env ````
+## Create a Dotenv file .env under your project root directory 
 
 ```
 S3_ACCESS_KEY=
